@@ -3,244 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>100 Razones por las que amo a Nicol</title>
-    <link rel="icon" href="heart_like_love_twitter_icon_127132.png" type="image/png">
+    <title>Botón de Amor con Respuesta</title>
     <style>
+        /* Fondo con imagen */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background-color: #f5f5f5;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
             margin: 0;
-            color: #333;
+            background-image: url('https://cdn.pixabay.com/photo/2020/01/08/11/14/heart-4744301_960_720.jpg');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            color: white;
         }
-        .container {
-            text-align: center;
-            background: linear-gradient(to bottom, #fff0f0, #ffe6e6);
+
+        /* Sombra y bordes brillantes */
+        .contenedor {
+            background-color: rgba(255, 182, 193, 0.8);
             padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            border: 2px solid white;
+            animation: brillo 3s infinite alternate;
+        }
+
+        /* Animación de brillo en los bordes */
+        @keyframes brillo {
+            0% { border-color: #ff1493; }
+            100% { border-color: #ffffff; }
+        }
+
+        /* Estilos para el botón principal */
+        #botonPrincipal {
+            background-color: #ff69b4;
+            color: white;
+            padding: 15px 40px;
+            font-size: 24px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #botonPrincipal:hover {
+            transform: scale(1.2);
+            background-color: #ff1493;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Estilos para el mensaje */
+        #mensaje {
+            font-size: 32px;
+            color: #fff;
+            margin-top: 20px;
+            display: none;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Estilos para los botones de respuesta */
+        .botonRespuesta {
+            background-color: #ff69b4;
+            color: white;
+            padding: 12px 28px;
+            font-size: 20px;
+            border: none;
             border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-            position: relative; /* Para alinear el botón al final */
-        }
-        .title {
-            font-size: 1.8em;
-            color: #d9534f;
-            margin-bottom: 20px;
-        }
-        .container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        .reason {
-            margin-top: 20px;
-            font-size: 1.2em;
-            color: #555;
-        }
-        .buttons {
-            margin-top: 20px;
-        }
-        .buttons button {
-            margin: 0 10px;
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            background-color: #d9534f;
-            color: white;
             cursor: pointer;
-            transition: background-color 0.3s;
+            margin: 15px;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
         }
-        .buttons button:hover {
-            background-color: #c9302c;
+
+        .botonRespuesta:hover {
+            transform: scale(1.1);
+            background-color: #ff1493;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
         }
-        .footer {
+
+        /* Posicionar y mostrar los botones de respuesta */
+        #respuestaBotones {
+            display: none;
             margin-top: 30px;
-            font-size: 1.2em;
-            color: #777;
         }
-        .go-to-end {
+
+        /* Estilos para los corazones flotando */
+        .corazon, .caritaTriste {
             position: absolute;
-            bottom: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            font-size: 1em;
-            border: none;
-            border-radius: 5px;
-            background-color: #5bc0de;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s;
+            font-size: 40px;
+            animation: flotar 4s ease-in-out infinite;
+            opacity: 0;
         }
-        .go-to-end:hover {
-            background-color: #46b8da;
+
+        .corazon {
+            color: #ff69b4;
+        }
+
+        .caritaTriste {
+            color: #1e90ff;
+        }
+
+        /* Animación para los corazones y caritas flotando */
+        @keyframes flotar {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-400px) scale(1.5);
+                opacity: 0;
+            }
         }
     </style>
-    <script>
-        let reasons = [
-            "Amo tu risa contagiosa.",
-            "Amo tu forma de ver la vida.",
-            "Amo cómo me haces sentir.",
-            "Amo nuestras conversaciones profundas.",
-            "Amo tus abrazos reconfortantes.",
-            "Amo tu inteligencia.",
-            "Amo tu sentido del humor.",
-            "Amo cómo siempre sabes qué decir.",
-            "Amo tus ojos.",
-            "Amo tu sonrisa.",
-            "Amo tu pasión por la vida.",
-            "Amo tu bondad.",
-            "Amo tu generosidad.",
-            "Amo tu paciencia.",
-            "Amo cómo me inspiras.",
-            "Amo tu fortaleza.",
-            "Amo tu vulnerabilidad.",
-            "Amo tu creatividad.",
-            "Amo tu espíritu aventurero.",
-            "Amo cómo me entiendes sin palabras.",
-            "Amo nuestras memorias juntos.",
-            "Amo tus sueños y aspiraciones.",
-            "Amo cómo enfrentas los desafíos.",
-            "Amo tu capacidad de perdonar.",
-            "Amo tu autenticidad.",
-            "Amo tu determinación.",
-            "Amo tus caricias.",
-            "Amo cómo me apoyas.",
-            "Amo cómo te preocupas por los demás.",
-            "Amo tu honestidad.",
-            "Amo tu lealtad.",
-            "Amo tus gestos cariñosos.",
-            "Amo cómo te esfuerzas en todo lo que haces.",
-            "Amo tu espontaneidad.",
-            "Amo cómo disfrutas las pequeñas cosas.",
-            "Amo tu capacidad de hacerme reír.",
-            "Amo cómo transformas un día ordinario en algo especial.",
-            "Amo tu voz.",
-            "Amo cómo escuchas.",
-            "Amo tu comprensión.",
-            "Amo tu entusiasmo por la vida.",
-            "Amo tu curiosidad.",
-            "Amo cómo me haces sentir amado.",
-            "Amo tu dedicación.",
-            "Amo tus principios.",
-            "Amo tu forma de amar.",
-            "Amo cómo te cuidas.",
-            "Amo cómo me cuidas.",
-            "Amo tus pequeñas manías.",
-            "Amo tu espíritu libre.",
-            "Amo cómo bailas sin preocuparte por nada.",
-            "Amo tu confianza.",
-            "Amo tu humildad.",
-            "Amo cómo me haces mejor persona.",
-            "Amo tus consejos.",
-            "Amo tu sonrisa cuando te veo.",
-            "Amo tu optimismo.",
-            "Amo cómo enfrentas la adversidad.",
-            "Amo tu capacidad de soñar.",
-            "Amo tu ética de trabajo.",
-            "Amo tu dulzura.",
-            "Amo tus detalles.",
-            "Amo cómo me haces sentir en casa.",
-            "Amo cómo valoras nuestra relación.",
-            "Amo cómo compartes tus pensamientos.",
-            "Amo tu entusiasmo por aprender.",
-            "Amo tus ojos brillando de alegría.",
-            "Amo cómo aprecias la naturaleza.",
-            "Amo cómo me haces sentir seguro.",
-            "Amo cómo respetas a los demás.",
-            "Amo tus esfuerzos por hacerme feliz.",
-            "Amo tus talentos únicos.",
-            "Amo cómo te superas a ti misma.",
-            "Amo tus besos.",
-            "Amo tu espíritu juguetón.",
-            "Amo cómo enfrentas tus miedos.",
-            "Amo tu capacidad de sorprenderme.",
-            "Amo cómo me completas.",
-            "Amo tu forma de pensar.",
-            "Amo tus historias.",
-            "Amo cómo me haces sentir especial.",
-            "Amo tu independencia.",
-            "Amo tu sentido de la justicia.",
-            "Amo cómo cuidas de los animales.",
-            "Amo cómo enfrentas las dificultades con una sonrisa.",
-            "Amo tus sueños compartidos.",
-            "Amo cómo hacemos un gran equipo.",
-            "Amo cómo siempre estás ahí para mí.",
-            "Amo tu serenidad en momentos de caos.",
-            "Amo tu sabiduría.",
-            "Amo tu perseverancia.",
-            "Amo cómo me haces ver el lado positivo.",
-            "Amo cómo haces que todo valga la pena.",
-            "Amo tu ternura.",
-            "Amo cómo amas la vida.",
-            "Amo cómo me haces sentir amado incondicionalmente.",
-            "Amo tu pasión por tus intereses.",
-            "Amo cómo te entregas por completo.",
-            "Amo tu energía positiva.",
-            "Amo cómo cada día encuentro una nueva razón para amarte más."
-        ];
-
-        let currentReason = 0;
-
-        // Función para mostrar la razón actual
-        function showReason(index) {
-            document.getElementById('reason').innerText = reasons[index];
-            currentReason = index;
-            saveCurrentReason();
-        }
-
-        // Función para mostrar la siguiente razón
-        function nextReason() {
-            currentReason = (currentReason + 1) % reasons.length;
-            showReason(currentReason);
-        }
-
-        // Función para mostrar la razón anterior
-        function prevReason() {
-            currentReason = (currentReason - 1 + reasons.length) % reasons.length;
-            showReason(currentReason);
-        }
-
-        // Función para ir al final de las razones
-        function goToEnd() {
-            currentReason = reasons.length - 1;
-            showReason(currentReason);
-        }
-
-        // Función para guardar la razón actual en localStorage
-        function saveCurrentReason() {
-            localStorage.setItem('currentReason', currentReason.toString());
-        }
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            // Obtener la última razón guardada o iniciar desde la primera
-            let savedReason = localStorage.getItem('currentReason');
-            if (savedReason !== null) {
-                currentReason = parseInt(savedReason);
-            }
-            showReason(currentReason);
-        });
-    </script>
 </head>
 <body>
-    <div class="container">
-        <div class="title">Para Nicol de Uriel (el amor de tu vida mi love)</div>
-        <img src="9ff0131e252fe5474af214c357bb8936.jpg" alt="Rata Ojona">
-        <div class="reason" id="reason"></div>
-        <div class="buttons">
-            <button onclick="prevReason()">Razón Anterior</button>
-            <button onclick="nextReason()">Siguiente Razón</button>
+
+    <div class="contenedor">
+        <!-- Botón principal -->
+        <button id="botonPrincipal">Presiona aquí</button>
+
+        <!-- Mensaje y botones de respuesta -->
+        <p id="mensaje">¿Quieres ser mi dua tóxica?</p>
+        <div id="respuestaBotones">
+            <button class="botonRespuesta" id="botonSi">Sí</button>
+            <button class="botonRespuesta" id="botonNo">No</button>
         </div>
-        <div class="footer">No son todas pero son algunas</div>
-      
-        <button class="go-to-end" onclick="goToEnd()">Ir al Final</button>
     </div>
+
+    <script>
+        // Mostrar el mensaje y los botones al hacer clic en "Presiona aquí"
+        document.getElementById("botonPrincipal").addEventListener("click", function() {
+            document.getElementById("mensaje").style.display = "block";
+            document.getElementById("respuestaBotones").style.display = "block";
+        });
+
+        // Acción para el botón "Sí"
+        document.getElementById("botonSi").addEventListener("click", function() {
+            alert("¡Sabía que dirías que sí! 💖");
+            crearCorazones();
+        });
+
+        // Acción para el botón "No"
+        document.getElementById("botonNo").addEventListener("click", function() {
+            alert("Oh no 😢");
+            crearCaritasTristes();
+        });
+
+        // Función para generar corazones
+        function crearCorazones() {
+            for (let i = 0; i < 15; i++) {
+                let corazon = document.createElement("span");
+                corazon.innerText = "♥";
+                corazon.classList.add("corazon");
+                document.body.appendChild(corazon);
+
+                // Posición aleatoria para cada corazón
+                corazon.style.left = Math.random() * window.innerWidth + "px";
+                corazon.style.top = window.innerHeight + "px";
+
+                // Eliminar el corazón después de la animación
+                setTimeout(function() {
+                    corazon.remove();
+                }, 4000);
+            }
+        }
+
+        // Función para generar caritas tristes
+        function crearCaritasTristes() {
+            for (let i = 0; i < 15; i++) {
+                let carita = document.createElement("span");
+                carita.innerText = "😢";
+                carita.classList.add("caritaTriste");
+                document.body.appendChild(carita);
+
+                // Posición aleatoria para cada carita
+                carita.style.left = Math.random() * window.innerWidth + "px";
+                carita.style.top = window.innerHeight + "px";
+
+                // Eliminar la carita después de la animación
+                setTimeout(function() {
+                    carita.remove();
+                }, 4000);
+            }
+        }
+    </script>
+
 </body>
 </html>
+
+
 
